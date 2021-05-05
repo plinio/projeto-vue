@@ -1,23 +1,21 @@
 <template>
-
     <div class="painel">
-        <h2 class="painel-titulo"> {{ titulo }} </h2>
+        <h2 class="painel-titulo">{{ titulo }}</h2>
         <slot class="painel-conteudo">
         </slot>
     </div>
-
 </template>
 
 <script>
 export default {
 
     props: ['titulo']
-
 }
+
 </script>
 
 <style scoped>
- .painel {
+   .painel {
     padding: 0 auto;
     border: solid 2px grey;
     display: inline-block;
@@ -38,8 +36,8 @@ export default {
     text-transform: uppercase;
   }
 
-  *  {
-    box-shadow: 5px 5px 5px;
+  * {
+      box-shadow: 5px 5px 5px;
   }
 
 </style>
