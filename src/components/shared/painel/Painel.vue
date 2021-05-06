@@ -1,15 +1,29 @@
 <template>
-    <div class="painel">
-        <h2 class="painel-titulo">{{ titulo }}</h2>
-        <slot class="painel-conteudo">
-        </slot>
+
+  <div class="painel">
+
+    <h2 class="painel-titulo" v-on:click="visivel = !visivel">{{ titulo }}</h2>
+    <div class="painel-conteudo" v-show="visivel">
+      <slot></slot>
     </div>
+
+  </div>
+
 </template>
 
 <script>
 export default {
 
-    props: ['titulo']
+   props: ['titulo'],
+
+   data() {
+
+       return {
+
+           visivel: true
+       }
+   }
+
 }
 
 </script>
@@ -34,6 +48,7 @@ export default {
     margin: 0 0 15px 0;
     padding: 10px;
     text-transform: uppercase;
+    cursor: pointer;
   }
 
   * {
