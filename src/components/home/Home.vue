@@ -8,7 +8,11 @@
 
         <meu-painel :titulo="foto.titulo">
           <imagem-responsiva :url="foto.url" :titulo="foto.titulo"></imagem-responsiva>
-          <meu-botao tipo="button" rotulo="Remover" v-on:botaoAtivado="remove(foto)" />
+          <meu-botao 
+            tipo="button" rotulo="Remover" 
+            v-on:botaoAtivado="remove(foto)"
+            :confirmacao="true"
+            estilo="perigo" />
         </meu-painel>
 
       </li>

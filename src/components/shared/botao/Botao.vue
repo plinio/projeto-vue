@@ -1,5 +1,5 @@
 <template>
-    <button v-on:click="disparaAcao()" class="botao botao-perigo" :type="tipo">
+    <button v-on:click="disparaAcao()" :class="estiloDoBotao" :type="tipo">
         {{ rotulo }}
     </button>
 </template>
@@ -7,17 +7,29 @@
 <script>
 export default {
     
-    props: ['tipo', 'rotulo'],
+    props: ['tipo', 'rotulo', 'confirmacao', 'estilo'],
 
     methods:{
 
         disparaAcao(){
-            if(confirm('Conforma remoção?')){
-                this.$emit('botaoAtivado');
+            if(this.confirmacao){
+                if(confirm('Conforma remoção?')){
+                    this.$emit('botaoAtivado');
+                }
+                return;
             }
+            this.$emit('botaoAtivado')
+        }
+    },
+    computed:{
+
+        estiloDoBotao(){
+            if(this.estilo == 'padrao' || !this.estilo) return 'botao botao-padrao';
+            if(this.estilo == 'perigo') return 'botao botao-perigo';
         }
 
     }
+
 }
 </script>
 
