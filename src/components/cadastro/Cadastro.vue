@@ -6,21 +6,27 @@
     <h1 class="centralizado">Cadastro</h1>
     <h2 class="centralizado"></h2>
 
-    <form>
+    <form v-on:submit.prevent="grava()">
       <div class="controle">
         <label for="titulo">TÍTULO</label>
-        <input id="titulo" autocomplete="off">
+        <input id="titulo" 
+          v-model="foto.titulo"
+          autocomplete="off">
       </div>
 
       <div class="controle">
         <label for="url">URL</label>
-        <input id="url" autocomplete="off">
-        <imagem-responsiva/>
+        <input id="url" 
+          v-model.lazy="foto.url"
+          autocomplete="off">
+        <imagem-responsiva :url="foto.url" :titulo="foto.titulo"/>
       </div>
 
       <div class="controle">
         <label for="descricao">DESCRIÇÃO</label>
-        <textarea id="descricao" autocomplete="off"></textarea>
+        <textarea id="descricao" 
+          v-model="foto.descricao"
+          autocomplete="off"></textarea>
       </div>
 
       <div class="centralizado">
@@ -43,6 +49,32 @@ export default {
 
     'imagem-responsiva': ImagemResponsiva, 
     'meu-botao': Botao
+  },
+  
+  data(){
+
+    return{
+
+      foto: {
+        titulo: '',
+        url: '',
+        descricao: ''
+      }
+    }
+  },
+
+  methods: {
+
+    grava(){
+      
+      console.log("enviar dados para a API");
+      //depois de gravar limpa o objeto e o form
+      this.foto = {
+        titulo: '',
+        url: '',
+        descricao: ''
+      }
+    }
   }
 }
 
