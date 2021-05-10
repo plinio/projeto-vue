@@ -65,7 +65,7 @@ export default {
   methods: {
     remove(foto){
       
-      this.$http.delete(`http://localhost:3000/v1/fotos/${foto._id}`)
+      this.$http.delete(`v1/fotos/${foto._id}`)
         .then(()=> {
           
           let indice = this.fotos.indexOf(foto);
@@ -82,7 +82,7 @@ export default {
 
   created(){
 
-    let promise = this.$http.get("http://localhost:3000/v1/fotos");
+    let promise = this.$http.get("v1/fotos");
     promise
       .then(res => res.json())
       .then(fotosApi => this.fotos = fotosApi, err => console.log(err));
