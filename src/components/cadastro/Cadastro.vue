@@ -64,9 +64,8 @@ export default {
 
     grava(){
       
-      console.log("enviar dados para a API");
-      //depois de gravar limpa o objeto e o form
-      this.foto = new Foto();
+      this.$http.post('http://localhost:3000/v1/fotos', this.foto)
+        .then(() => this.foto = new Foto(), err => console.log(err))
     }
   }
 }
