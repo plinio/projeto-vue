@@ -24,7 +24,7 @@ export default {
 
     return{
 
-      routes: routes
+      routes: routes.filter(route => route.menu)//pega so as rotas cuja propriedade menu = true
     }
   }
 }
