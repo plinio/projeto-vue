@@ -1,26 +1,29 @@
 <template>
-  <div>
-    <h1 class="centralizado">{{titulo}}</h1>
-    <p v-show="mensagem" class="centralizado">{{mensagem}}</p>
-    <input type="search" class="filtro" v-on:input="filtro = $event.target.value" placeholder="filtre por parte do titulo">
-    
-    <ul class="lista-fotos">
-      <li class="lista-fotos-item" v-for="foto of fotosComFiltro" :key="foto">
+    <div>    
+        <h1 class="centralizado">Alurapic</h1>
+        <p v-show="mensagem" class="centralizado">{{ mensagem }}</p>
+        <input type="search" class="filtro" @input="filtro = $event.target.value" placeholder="filtre pelo título da foto">
+        <ul class="lista-fotos">
+          <li class="lista-fotos-item" v-for="foto of fotosComFiltro" :key="foto">
+              <meu-painel :titulo="foto.titulo">
+                <imagem-responsiva :url="foto.url" :titulo="foto.titulo" v-meu-transform:scale.animate="1.2"/>
 
-        <meu-painel :titulo="foto.titulo">
-          <imagem-responsiva v-meu-transform="{incremento: 20, animate: true}" :url="foto.url" :titulo="foto.titulo"></imagem-responsiva>
-          <meu-botao 
-            tipo="button" rotulo="Remover" 
-            v-on:botaoAtivado="remove(foto)"
-            :confirmacao="true"
-            estilo="perigo" />
-        </meu-painel>
+                <router-link :to="{ name: 'altera', params: { id : foto._id }}">
+                  <meu-botao 
+                    rotulo="Alterar" 
+                    tipo="button"/>
+                </router-link>  
 
-      </li>
-    </ul>
-    
-  </div>
-
+                <meu-botao 
+                  rotulo="remover" 
+                  tipo="button" 
+                  estilo="perigo"
+                  :confirmacao="true" 
+                  @botaoAtivado="remove(foto)"/>
+              </meu-painel>
+          </li>
+        </ul>
+    </div>
 </template>
 
 <script>
