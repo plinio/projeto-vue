@@ -15,9 +15,15 @@ export default class FotoService{
     }
 
     cadastra(foto){
+        if(foto._id){//alteração
 
-        return this._resource
+            return this._resource
+                .update({id: foto._id}, foto)
+        }else{
+            return this._resource
             .save(foto);
+        }
+
     }
 
     apaga(id){
