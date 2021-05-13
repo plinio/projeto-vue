@@ -1,6 +1,7 @@
 <template>
     <div>    
         <h1 class="centralizado">Alurapic</h1>
+        <img src="/static/foto_baixada.jpeg"/>
         <p v-show="mensagem" class="centralizado">{{ mensagem }}</p>
         <input type="search" class="filtro" @input="filtro = $event.target.value" placeholder="filtre pelo título da foto">
         <ul class="lista-fotos">
